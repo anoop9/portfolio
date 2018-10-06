@@ -1,5 +1,4 @@
 <!doctype html>
-{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -26,49 +25,32 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="#">Twitter</a>
-                <a class="nav-item nav-link" href="{% static  'cv.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="#">Blog</a>
+                <a class="nav-item nav-link" href="#">Resume</a>
+                <a class="nav-item nav-link active" href="#">Blog</a>
             </div>
         </div>
     </nav>
 </header>
 
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Anoop Ambooken</h1>
-            <p class="lead text-muted">I am Anoop Ambooken</p>
-            <img src="{% static 'tovino.jpg' %}">
-            <p>
-                <a href="#" class="btn btn-primary my-2">Email me</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-
-                {% for job in jobs.all %}
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top"
-                                 src="{{ job.image.url }}"/>
-                            <div class="card-body">
-                                <p class="card-text">{{ job.summary }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                {% endfor %}
-            </div>
-        </div>
+    <div class="container">
+        <h1 class="text-center pt-3">Anoop Ambookens Blog</h1>
+        <br>
+        <br>
+        <h2>Latest Posts</h2>
+        {% for blog in blogs.all %}
+           <a href=""> <h3>{{ blog.title }}</h3></a>
+            <br>
+            {{ blog.summary }}
+            <br>
+            {{ blog.pub_date }}
+            <br>
+            <img class="image-fluid"
+                 src="{{ blog.image.url }}" height="300" width="300"/>
+            <br>
+        {% endfor %}
+        <hr>
     </div>
-
 </main>
 
 <footer class="text-muted">
